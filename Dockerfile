@@ -1,3 +1,7 @@
+# Set a global GA_PROPERTY_ENV argument for the docker build, so that it can be
+# used in all stages.
+ARG GA_PROPERTY_ENV=xxxxxxxxxxxx
+
 ########################################
 #
 # Stage 1: Build
@@ -12,8 +16,7 @@
 # of the image is released.
 FROM golang:1.18-alpine AS build
 
-ARG GA_PROPERTY=xxxxxxxxxxxx
-ENV GA_PROPERTY=${GA_PROPERTY}
+ENV GA_PROPERTY=$GA_PROPERTY_ENV
 ENV CGO_ENABLED=0
 
 # Set the working directory to the /src directory. All relative
@@ -51,7 +54,7 @@ RUN go build -o /app main.go
 # of the image is released.
 FROM alpine:3.15
 
-ENV GA_PROPERTY=${GA_PROPERTY}
+ENV GA_PROPERTY=$GA_PROPERTY_ENV
 
 # Use the alpine package manager. --update will ensure that
 # the cache is up to date. Then, make sure the CA certificates
