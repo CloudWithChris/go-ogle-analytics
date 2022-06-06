@@ -1,4 +1,4 @@
-module github.com/cloudwithchris/go-ogle-analytics
+module github.com/cloudwithchris/go-ogle-analytics/app
 
 go 1.18
 

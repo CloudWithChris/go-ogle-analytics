@@ -17,7 +17,7 @@ func main() {
 
 	// Create a new HTTP Router using Gorilla's mux
 	router := mux.NewRouter()
-	router.HandleFunc("/analytics", getAnalyticsData).Methods("GET")
+	router.HandleFunc("/GetGoogleAnalyticsData", getAnalyticsData).Methods("GET")
 
 	// Start the server on port 6002
 	http.ListenAndServe(":6002", router)
